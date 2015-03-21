@@ -1,8 +1,7 @@
 ---
 driver:
   name: rackspace
-  rackspace_username: <%= ENV['RACKSPACE_USERNAME'] %>
-  rackspace_api_key: <%= ENV['RACKSPACE_API_KEY'] %>
+  public_key_path: ~/.ssh/id_rsa.pub
   rackspace_region: 'IAD'
   flavor_id: 'general1-2'
 
