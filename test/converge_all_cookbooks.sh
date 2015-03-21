@@ -7,6 +7,10 @@ do
   #knife racksapce server delete -y ${UUID} --purge
   cd "${DIR}/../${i}"
   kitchen test
+  if [ "$?" -ne "0" ]; then
+    echo "Test for ${i} failed"
+    exit 1
+  fi
 done
 
 cd $DIR
