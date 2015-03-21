@@ -24,5 +24,6 @@ test:
     - mkdir tmp
     - ./test/test.sh
     - ./test/converge_all_cookbooks.sh
+        timeout: 3600
   post:
     - ./test/destroy_all_kitchen_servers.sh

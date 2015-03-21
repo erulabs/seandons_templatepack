@@ -146,7 +146,6 @@ GEM
     inflecto (0.0.2)
     ipaddress (0.8.0)
     json (1.8.2)
-    kitchen (0.0.3)
     kitchen-rackspace (0.14.0)
       fog (~> 1.18)
       test-kitchen (~> 1.1)
@@ -234,6 +233,5 @@ PLATFORMS
 DEPENDENCIES
   berkshelf
   foodcritic
-  kitchen
   kitchen-rackspace
   rubocop
