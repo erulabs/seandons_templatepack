@@ -5,6 +5,7 @@ machine:
 dependencies:
   pre:
     - ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
+    - cp test/ssh_config ~/.ssh/config
     - sudo pip install fastfood
     - sudo apt-get install libboost1.54-dev
     - sudo apt-get install libgecode-dev
