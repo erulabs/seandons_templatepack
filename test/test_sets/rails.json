@@ -1,0 +1,31 @@
+{
+  "name": "my_rails_cookbook",
+  "stencils": [
+    {
+      "name": "mywebsite.com",
+      "stencil_set": "rails"
+    },
+    {
+      "name": "_ruby",
+      "stencil_set": "ruby"
+    },
+    {
+      "name": "_nginx",
+      "stencil_set": "nginx",
+      "example": "rails"
+    },
+    {
+      "name": "_mariadb",
+      "stencil_set": "mariadb"
+    },
+    {
+      "name": "_haredis",
+      "stencil_set": "ha-redis",
+      "example": "php"
+    },
+    {
+      "name": "_rackspace_networks",
+      "stencil_set": "rackspace_networks"
+    }
+  ]
+}

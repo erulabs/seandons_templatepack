@@ -1,0 +1,23 @@
+machine:
+  ruby:
+    version: 2.2.0
+
+dependencies:
+  pre:
+    - sudo pip install fastfood
+    - bundle install
+
+general:
+  branches:
+    ignore:
+      - gh-pages
+      - dev
+      - seandon
+
+test:
+  override:
+    - mkdir tmp
+    - ./test/test.sh
+    - ./test/converge_all_cookbooks.sh
+  post:
+    - ./test/destroy_all_kitchen_servers.sh

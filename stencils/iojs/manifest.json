@@ -1,0 +1,25 @@
+{
+  "id": "iojs",
+  "api": 1,
+  "default_stencil": "iojs",
+  "dependencies": {
+    "iojs": {},
+    "nodejs": {}
+  },
+  "options": {
+    "name": {
+      "help": "Name of the recipe to create",
+      "default": "_nodejs"
+    }
+  },
+  "stencils": {
+    "nodejs": {
+      "files": {
+        "recipes/<NAME>.rb": "recipes/_iojs.rb",
+        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/iojs_spec.rb"
+      },
+      "options": {
+      }
+    }
+  }
+}
