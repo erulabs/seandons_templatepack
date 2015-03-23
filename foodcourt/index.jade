@@ -43,6 +43,18 @@ html(lang="en", ng-app="foodcourt")
                 td.input
                   input.form-control(type="text", placeholder="{{ option.default }}", data-ng-model="option.choice", data-ng-change="buildManifest()")
 
+    .col-md-8.col-md-offset-2
+      h2.center Prime cuts
+      .subtitle These are tested combinations of stencils which help you get started ASAP
+      table.stencils.table
+        tr.stencil(data-ng-repeat="(name, stencil) in stencilPacks")
+          td.name {{ name }}
+          td.help Includes:
+            ul.inline
+              li(data-ng-repeat="(namedep, stencildep) in stencil.stencils") {{ stencildep.stencil_set }}
+          td.select
+            button.btn.btn-xs.btn-primary(data-ng-click="selectStencilPack(name)") Bundle
+
     .col-md-4.col-md-offset-2
       h2.center Available Stencils
       table.stencils.table

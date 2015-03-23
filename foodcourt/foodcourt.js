@@ -11,6 +11,12 @@ app.controller('stencilController', function ($scope) {
     $scope.stencilsData[stencilName] = require('json!./../stencils/' + stencilName + '/manifest.json');
   }
 
+  let stencilPacks = [ 'node', 'wordpress' ];
+  $scope.stencilPacks = {};
+  stencilPacks.forEach(function (stencilPackName) {
+    $scope.stencilPacks[stencilPackName] = require('json!./../test/test_sets/' + stencilPackName + '.json');
+  });
+
   $scope.base = manifest.base;
   $scope.api = manifest.api;
   $scope.framework = manifest.framework;
@@ -22,6 +28,12 @@ app.controller('stencilController', function ($scope) {
     $scope.selectedStencils[name] = $scope.stencilsData[name];
     $scope.numStencils += 1;
     $scope.buildManifest();
+  };
+
+  $scope.selectStencilPack = function (name) {
+    $scope.stencilPacks[name].stencils.forEach(function (stencilName) {
+      $scope.selectStencil(stencilName.stencil_set);
+    });
   };
 
   $scope.removeStencil = function (name) {

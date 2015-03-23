@@ -40,6 +40,9 @@ header .subtitle {
   position: relative;
   top: -0.3em;
 }
+.subtitle {
+  text-align: center;
+}
 td.name {
   font-weight: bold;
 }
@@ -51,4 +54,8 @@ table.options tr .help {
 }
 table.options tr .input {
   width: 50%;
+}
+ul.inline li {
+  display: inline;
+  padding-right: .2em;
 }

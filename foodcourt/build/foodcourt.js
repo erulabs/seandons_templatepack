@@ -48,7 +48,7 @@
 	"use strict";
 
 	var app = angular.module("foodcourt", []);
-	var manifest = __webpack_require__(2);
+	var manifest = __webpack_require__(3);
 
 	app.controller("stencilController", function ($scope) {
 	  $scope.stencils = manifest.stencil_sets;
@@ -56,6 +56,12 @@
 	  for (var stencilName in manifest.stencil_sets) {
 	    $scope.stencilsData[stencilName] = __webpack_require__(1)("./" + stencilName + "/manifest.json");
 	  }
+
+	  var stencilPacks = ["node", "wordpress"];
+	  $scope.stencilPacks = {};
+	  stencilPacks.forEach(function (stencilPackName) {
+	    $scope.stencilPacks[stencilPackName] = __webpack_require__(2)("./" + stencilPackName + ".json");
+	  });
 
 	  $scope.base = manifest.base;
 	  $scope.api = manifest.api;
@@ -68,6 +74,12 @@
 	    $scope.selectedStencils[name] = $scope.stencilsData[name];
 	    $scope.numStencils += 1;
 	    $scope.buildManifest();
+	  };
+
+	  $scope.selectStencilPack = function (name) {
+	    $scope.stencilPacks[name].stencils.forEach(function (stencilName) {
+	      $scope.selectStencil(stencilName.stencil_set);
+	    });
 	  };
 
 	  $scope.removeStencil = function (name) {
@@ -123,31 +135,31 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var map = {
-		"./apache/manifest.json": 3,
-		"./application-node/manifest.json": 4,
-		"./application-php/manifest.json": 5,
-		"./drupal/manifest.json": 6,
-		"./elk/manifest.json": 7,
-		"./glusterfs/manifest.json": 8,
-		"./graphite/manifest.json": 9,
-		"./ha-redis/manifest.json": 10,
-		"./haproxy/manifest.json": 11,
-		"./iojs/manifest.json": 12,
-		"./mariadb-galera/manifest.json": 14,
-		"./mariadb/manifest.json": 13,
-		"./memcached/manifest.json": 15,
-		"./newrelic/manifest.json": 16,
-		"./nginx/manifest.json": 17,
-		"./nodejs/manifest.json": 18,
-		"./php/manifest.json": 19,
-		"./rackspace_networks/manifest.json": 20,
-		"./rails/manifest.json": 21,
-		"./redis/manifest.json": 22,
-		"./ruby/manifest.json": 23,
-		"./statsd/manifest.json": 24,
-		"./utility/manifest.json": 25,
-		"./varnish/manifest.json": 26,
-		"./wordpress/manifest.json": 27
+		"./apache/manifest.json": 6,
+		"./application-node/manifest.json": 7,
+		"./application-php/manifest.json": 8,
+		"./drupal/manifest.json": 9,
+		"./elk/manifest.json": 10,
+		"./glusterfs/manifest.json": 11,
+		"./graphite/manifest.json": 12,
+		"./ha-redis/manifest.json": 13,
+		"./haproxy/manifest.json": 14,
+		"./iojs/manifest.json": 15,
+		"./mariadb-galera/manifest.json": 17,
+		"./mariadb/manifest.json": 16,
+		"./memcached/manifest.json": 18,
+		"./newrelic/manifest.json": 19,
+		"./nginx/manifest.json": 20,
+		"./nodejs/manifest.json": 21,
+		"./php/manifest.json": 22,
+		"./rackspace_networks/manifest.json": 23,
+		"./rails/manifest.json": 24,
+		"./redis/manifest.json": 25,
+		"./ruby/manifest.json": 26,
+		"./statsd/manifest.json": 27,
+		"./utility/manifest.json": 28,
+		"./varnish/manifest.json": 29,
+		"./wordpress/manifest.json": 30
 	};
 	function webpackContext(req) {
 		return __webpack_require__(webpackContextResolve(req));
@@ -165,6 +177,28 @@
 
 /***/ },
 /* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var map = {
+		"./node.json": 4,
+		"./wordpress.json": 5
+	};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 2;
+
+
+/***/ },
+/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -279,7 +313,66 @@
 	}
 
 /***/ },
-/* 3 */
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+		"name": "my_node_cookbook",
+		"stencils": [
+			{
+				"name": "mywebsite.com",
+				"stencil_set": "application-node"
+			},
+			{
+				"name": "_nodejs",
+				"stencil_set": "nodejs"
+			},
+			{
+				"name": "_nginx",
+				"stencil_set": "nginx"
+			}
+		]
+	}
+
+/***/ },
+/* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+		"name": "my_wordpress_cookbook",
+		"stencils": [
+			{
+				"stencil_set": "wordpress",
+				"name": "mywebsite.com",
+				"repository": "http://github.com/erulabs/wordpress_test"
+			},
+			{
+				"name": "_php",
+				"stencil_set": "php"
+			},
+			{
+				"name": "_nginx",
+				"stencil_set": "nginx",
+				"example": "php"
+			},
+			{
+				"name": "_mariadb",
+				"stencil_set": "mariadb"
+			},
+			{
+				"name": "_haredis",
+				"stencil_set": "ha-redis",
+				"example": "php"
+			},
+			{
+				"name": "_rackspace_networks",
+				"stencil_set": "rackspace_networks"
+			}
+		]
+	}
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -315,7 +408,7 @@
 	}
 
 /***/ },
-/* 4 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -360,7 +453,7 @@
 	}
 
 /***/ },
-/* 5 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -405,7 +498,7 @@
 	}
 
 /***/ },
-/* 6 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -451,7 +544,7 @@
 	}
 
 /***/ },
-/* 7 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -478,7 +571,7 @@
 	}
 
 /***/ },
-/* 8 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -518,7 +611,7 @@
 	}
 
 /***/ },
-/* 9 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -545,7 +638,7 @@
 	}
 
 /***/ },
-/* 10 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -578,7 +671,7 @@
 	}
 
 /***/ },
-/* 11 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -611,7 +704,7 @@
 	}
 
 /***/ },
-/* 12 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -640,7 +733,7 @@
 	}
 
 /***/ },
-/* 13 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -679,7 +772,7 @@
 	}
 
 /***/ },
-/* 14 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -718,7 +811,7 @@
 	}
 
 /***/ },
-/* 15 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -747,7 +840,7 @@
 	}
 
 /***/ },
-/* 16 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -778,7 +871,7 @@
 	}
 
 /***/ },
-/* 17 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -812,7 +905,7 @@
 	}
 
 /***/ },
-/* 18 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -852,7 +945,7 @@
 	}
 
 /***/ },
-/* 19 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -889,7 +982,7 @@
 	}
 
 /***/ },
-/* 20 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -916,7 +1009,7 @@
 	}
 
 /***/ },
-/* 21 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -953,7 +1046,7 @@
 	}
 
 /***/ },
-/* 22 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -984,7 +1077,7 @@
 	}
 
 /***/ },
-/* 23 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1012,7 +1105,7 @@
 	}
 
 /***/ },
-/* 24 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1038,7 +1131,7 @@
 	}
 
 /***/ },
-/* 25 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1091,7 +1184,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1131,7 +1224,7 @@
 	}
 
 /***/ },
-/* 27 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
