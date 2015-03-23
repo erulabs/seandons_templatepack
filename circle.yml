@@ -27,3 +27,11 @@ test:
         timeout: 3600
   post:
     - ./test/destroy_all_kitchen_servers.sh
+
+deployment:
+  master:
+    branch: master
+    commands:
+      - git config user.email "autopusher@circleci.erulabs.com"
+      - git config --global user.name "CircleCI"
+      - git push -f origin master:gh-pages
