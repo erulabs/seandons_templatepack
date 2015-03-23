@@ -17,14 +17,8 @@
     "utility": {
       "help": "Creates some helpful utility recipes"
     },
-    "mysql": {
-      "help": "Creates some MySQL recipes"
-    },
     "newrelic": {
       "help": "Basic newrelic"
-    },
-    "postgres": {
-      "help": "Creates a postgres recipe"
     },
     "php": {
       "help": "Creates a standalone PHP instance"

@@ -6,6 +6,7 @@ html(lang="en", ng-app="foodcourt")
     meta(name="viewport", content="width=device-width, initial-scale=1.0")
     link(rel="stylesheet", href='index.css')
     link(rel="stylesheet", href='bootstrap.min.css')
+    script(type='text/javascript', src= 'angular.min.js')
   body(data-ng-controller="stencilController")
     header.col-md-8.col-md-offset-2
       .title FoodCourt
@@ -61,5 +62,4 @@ html(lang="en", ng-app="foodcourt")
             button.btn.btn-xs.btn-default(data-ng-click="openStencilOptions(name)") Options
           td.select
             button.btn.btn-xs.btn-danger(data-ng-click="removeStencil(name)") Remove
-
-    script(type='text/javascript', src= 'client.js')
+    script(type='text/javascript', src= 'foodcourt.js')
