@@ -12,10 +12,6 @@
     "name": {
       "help": "Name of the recipe to create",
       "default": "_galera"
-    },
-    "package_manager": {
-      "help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-      "default": "apt"
     }
   },
   "stencils": {

@@ -6,18 +6,19 @@
 #
 # Install and configure Varnish
 
-{% if options['package_manager'] == "apt" %}
-apt_repository 'varnish-cache' do
-  uri "http://repo.varnish-cache.org/#{node['platform']}"
-  distribution node['lsb']['codename']
-  components ['varnish-4.0']
-  key "http://repo.varnish-cache.org/#{node['platform']}/GPG-key.txt"
-  deb_src true
-  notifies 'nothing', 'execute[apt-get update]', 'immediately'
+case node['platform']
+when 'debian', 'ubuntu'
+  apt_repository 'varnish-cache' do
+    uri "http://repo.varnish-cache.org/#{node['platform']}"
+    distribution node['lsb']['codename']
+    components ['varnish-4.0']
+    key "http://repo.varnish-cache.org/#{node['platform']}/GPG-key.txt"
+    deb_src true
+    notifies 'nothing', 'execute[apt-get update]', 'immediately'
+  end
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  # TODO: Sorry - we don't support adding the Varnish4 repo for CentOS just yet.
 end
-{% else %}
-# TODO: Sorry - we don't support adding the Varnish4 repo for CentOS just yet.
-{% endif %}
 
 package 'varnish' do
   action [:upgrade, :install]

@@ -18,10 +18,6 @@
     "mount_path": {
       "help": "The directory where we'll mount the first volume",
       "default": "/var/sharedfs"
-    },
-    "package_manager": {
-      "help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-      "default": "apt"
     }
   },
   "stencils": {

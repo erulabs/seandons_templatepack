@@ -69,24 +69,25 @@ execute 'preseed mariadb-server' do
 end
 
 # Add the MariaDB 10 repo
-{% if options['package_manager'] == "apt" %}
-apt_repository 'mariadb' do
-  uri 'http://ftp.osuosl.org/pub/mariadb/repo/10.0/ubuntu'
-  distribution node['lsb']['codename']
-  components ['main']
-  # Force use of port 80 for keyserver transaction
-  # this bypasses issues with strict firewalls on testing machines
-  keyserver 'hkp://keyserver.ubuntu.com:80'
-  key '0xcbcb082a1bb943db'
+case node['platform']
+when 'debian', 'ubuntu'
+  apt_repository 'mariadb' do
+    uri 'http://ftp.osuosl.org/pub/mariadb/repo/10.0/ubuntu'
+    distribution node['lsb']['codename']
+    components ['main']
+    # Force use of port 80 for keyserver transaction
+    # this bypasses issues with strict firewalls on testing machines
+    keyserver 'hkp://keyserver.ubuntu.com:80'
+    key '0xcbcb082a1bb943db'
+  end
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  yum_repository 'MariaDB' do
+    description 'MariaDB 10.0 Repo'
+    mirrorlist 'http://yum.mariadb.org/10.0/centos6-amd64'
+    gpgkey 'https://yum.mariadb.org/RPM-GPG-KEY-MariaDB'
+    action :create
+  end
 end
-{% else %}
-yum_repository 'MariaDB' do
-  description 'MariaDB 10.0 Repo'
-  mirrorlist 'http://yum.mariadb.org/10.0/centos6-amd64'
-  gpgkey 'https://yum.mariadb.org/RPM-GPG-KEY-MariaDB'
-  action :create
-end
-{% endif %}
 
 # Install mariadb server!
 package 'mariadb-server' do

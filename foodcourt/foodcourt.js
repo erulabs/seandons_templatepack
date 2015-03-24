@@ -31,8 +31,15 @@ app.controller('stencilController', function ($scope) {
   };
 
   $scope.selectStencilPack = function (name) {
-    $scope.stencilPacks[name].stencils.forEach(function (stencilName) {
-      $scope.selectStencil(stencilName.stencil_set);
+    let stencils = $scope.stencilPacks[name].stencils;
+    for (let stencil in stencils) {
+      delete stencils[stencil].$$hashKey;
+    }
+    $scope.selectedStencils = {};
+    $scope.numStencils = 0;
+    $scope.manifest_output = $scope.prettyJson({
+      name: 'My_new_cookbook',
+      stencils: stencils
     });
   };
 

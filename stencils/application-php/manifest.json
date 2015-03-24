@@ -17,8 +17,9 @@
       "default": "http://github.com/erulabs/wordpress_test"
     },
     "webserver": {
-      "help": "Which webserver should we provide an example for? Choose 'nginx'/'apache'",
-      "default": "nginx"
+      "help": "Which webserver should we provide an example for?",
+      "default": "nginx",
+      "options": ["nginx", "apache"]
     }
   },
   "stencils": {

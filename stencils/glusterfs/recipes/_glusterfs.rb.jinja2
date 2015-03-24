@@ -25,21 +25,22 @@ node.default['gluster']['mounts'] = [
 # such that bricks are written to your disk rather than to the root partition.
 node.default['gluster']['brick_path'] = '/gluster'
 
-{% if options['package_manager'] == "apt" %}
-apt_repository 'ubuntu-glusterfs-3.4' do
-  uri 'http://ppa.launchpad.net/semiosis/ubuntu-glusterfs-3.4/ubuntu'
-  distribution node['lsb']['codename']
-  components ['main']
-  keyserver 'hkp://keyserver.ubuntu.com:80'
-  key '774BAC4D'
-  deb_src true
-  not_if do
-    File.exist?('/etc/apt/sources.list.d/ubuntu-glusterfs-3.4.list')
+case node['platform']
+when 'debian', 'ubuntu'
+  apt_repository 'ubuntu-glusterfs-3.4' do
+    uri 'http://ppa.launchpad.net/semiosis/ubuntu-glusterfs-3.4/ubuntu'
+    distribution node['lsb']['codename']
+    components ['main']
+    keyserver 'hkp://keyserver.ubuntu.com:80'
+    key '774BAC4D'
+    deb_src true
+    not_if do
+      File.exist?('/etc/apt/sources.list.d/ubuntu-glusterfs-3.4.list')
+    end
   end
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  # Sorry, we don't support centos just yet. Stay tuned!
 end
-{% else %}
-# TODO: Sorry - we don't support adding the GlusterFS repo for CentOS just yet.
-{% endif %}
 
 gluster_packages = ['xfsprogs', 'glusterfs-client', 'glusterfs-server']
 gluster_packages.each do |pkg|

@@ -6,7 +6,8 @@
     "rackspace_iptables": {},
     "chef-sugar": {},
     "application": {},
-    "rbenv": {}
+    "rbenv": {},
+    "unicorn-ng": {}
   },
   "options": {
     "name": {

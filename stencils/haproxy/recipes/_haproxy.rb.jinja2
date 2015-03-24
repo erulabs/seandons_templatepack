@@ -25,17 +25,18 @@ else
   end
 end
 
-{% if options['package_manager'] == "apt" %}
-apt_repository 'haproxy' do
-  uri 'ppa:vbernat/haproxy-1.5'
-  distribution node['lsb']['codename']
-  key '1C61B9CD'
-  keyserver 'hkp://keyserver.ubuntu.com:80'
-  action :add
+case node['platform']
+when 'debian', 'ubuntu'
+  apt_repository 'haproxy' do
+    uri 'ppa:vbernat/haproxy-1.5'
+    distribution node['lsb']['codename']
+    key '1C61B9CD'
+    keyserver 'hkp://keyserver.ubuntu.com:80'
+    action :add
+  end
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  # Sorry, we don't support centos just yet. Stay tuned!
 end
-{% else %}
-# TODO: CentOS Support
-{% endif %}
 
 package 'haproxy' do
   action [:upgrade, :install]

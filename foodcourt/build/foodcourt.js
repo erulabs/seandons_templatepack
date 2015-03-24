@@ -48,19 +48,19 @@
 	"use strict";
 
 	var app = angular.module("foodcourt", []);
-	var manifest = __webpack_require__(3);
+	var manifest = __webpack_require__(1);
 
 	app.controller("stencilController", function ($scope) {
 	  $scope.stencils = manifest.stencil_sets;
 	  $scope.stencilsData = {};
 	  for (var stencilName in manifest.stencil_sets) {
-	    $scope.stencilsData[stencilName] = __webpack_require__(1)("./" + stencilName + "/manifest.json");
+	    $scope.stencilsData[stencilName] = __webpack_require__(2)("./" + stencilName + "/manifest.json");
 	  }
 
 	  var stencilPacks = ["node", "wordpress"];
 	  $scope.stencilPacks = {};
 	  stencilPacks.forEach(function (stencilPackName) {
-	    $scope.stencilPacks[stencilPackName] = __webpack_require__(2)("./" + stencilPackName + ".json");
+	    $scope.stencilPacks[stencilPackName] = __webpack_require__(3)("./" + stencilPackName + ".json");
 	  });
 
 	  $scope.base = manifest.base;
@@ -77,8 +77,15 @@
 	  };
 
 	  $scope.selectStencilPack = function (name) {
-	    $scope.stencilPacks[name].stencils.forEach(function (stencilName) {
-	      $scope.selectStencil(stencilName.stencil_set);
+	    var stencils = $scope.stencilPacks[name].stencils;
+	    for (var stencil in stencils) {
+	      delete stencils[stencil].$$hashKey;
+	    }
+	    $scope.selectedStencils = {};
+	    $scope.numStencils = 0;
+	    $scope.manifest_output = $scope.prettyJson({
+	      name: "My_new_cookbook",
+	      stencils: stencils
 	    });
 	  };
 
@@ -132,73 +139,6 @@
 
 /***/ },
 /* 1 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var map = {
-		"./apache/manifest.json": 6,
-		"./application-node/manifest.json": 7,
-		"./application-php/manifest.json": 8,
-		"./drupal/manifest.json": 9,
-		"./elk/manifest.json": 10,
-		"./glusterfs/manifest.json": 11,
-		"./graphite/manifest.json": 12,
-		"./ha-redis/manifest.json": 13,
-		"./haproxy/manifest.json": 14,
-		"./iojs/manifest.json": 15,
-		"./mariadb-galera/manifest.json": 17,
-		"./mariadb/manifest.json": 16,
-		"./memcached/manifest.json": 18,
-		"./newrelic/manifest.json": 19,
-		"./nginx/manifest.json": 20,
-		"./nodejs/manifest.json": 21,
-		"./php/manifest.json": 22,
-		"./rackspace_networks/manifest.json": 23,
-		"./rails/manifest.json": 24,
-		"./redis/manifest.json": 25,
-		"./ruby/manifest.json": 26,
-		"./statsd/manifest.json": 27,
-		"./utility/manifest.json": 28,
-		"./varnish/manifest.json": 29,
-		"./wordpress/manifest.json": 30
-	};
-	function webpackContext(req) {
-		return __webpack_require__(webpackContextResolve(req));
-	};
-	function webpackContextResolve(req) {
-		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
-	};
-	webpackContext.keys = function webpackContextKeys() {
-		return Object.keys(map);
-	};
-	webpackContext.resolve = webpackContextResolve;
-	module.exports = webpackContext;
-	webpackContext.id = 1;
-
-
-/***/ },
-/* 2 */
-/***/ function(module, exports, __webpack_require__) {
-
-	var map = {
-		"./node.json": 4,
-		"./wordpress.json": 5
-	};
-	function webpackContext(req) {
-		return __webpack_require__(webpackContextResolve(req));
-	};
-	function webpackContextResolve(req) {
-		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
-	};
-	webpackContext.keys = function webpackContextKeys() {
-		return Object.keys(map);
-	};
-	webpackContext.resolve = webpackContextResolve;
-	module.exports = webpackContext;
-	webpackContext.id = 2;
-
-
-/***/ },
-/* 3 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -313,6 +253,74 @@
 	}
 
 /***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var map = {
+		"./apache/manifest.json": 7,
+		"./application-node/manifest.json": 8,
+		"./application-php/manifest.json": 9,
+		"./drupal/manifest.json": 10,
+		"./elk/manifest.json": 11,
+		"./glusterfs/manifest.json": 12,
+		"./graphite/manifest.json": 13,
+		"./ha-redis/manifest.json": 14,
+		"./haproxy/manifest.json": 15,
+		"./iojs/manifest.json": 16,
+		"./mariadb-galera/manifest.json": 18,
+		"./mariadb/manifest.json": 17,
+		"./memcached/manifest.json": 19,
+		"./newrelic/manifest.json": 20,
+		"./nginx/manifest.json": 21,
+		"./nodejs/manifest.json": 22,
+		"./php/manifest.json": 23,
+		"./rackspace_networks/manifest.json": 24,
+		"./rails/manifest.json": 25,
+		"./redis/manifest.json": 26,
+		"./ruby/manifest.json": 27,
+		"./statsd/manifest.json": 28,
+		"./utility/manifest.json": 29,
+		"./varnish/manifest.json": 30,
+		"./wordpress/manifest.json": 31
+	};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 2;
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var map = {
+		"./node.json": 4,
+		"./rails.json": 5,
+		"./wordpress.json": 6
+	};
+	function webpackContext(req) {
+		return __webpack_require__(webpackContextResolve(req));
+	};
+	function webpackContextResolve(req) {
+		return map[req] || (function() { throw new Error("Cannot find module '" + req + "'.") }());
+	};
+	webpackContext.keys = function webpackContextKeys() {
+		return Object.keys(map);
+	};
+	webpackContext.resolve = webpackContextResolve;
+	module.exports = webpackContext;
+	webpackContext.id = 3;
+
+
+/***/ },
 /* 4 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -336,6 +344,42 @@
 
 /***/ },
 /* 5 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = {
+		"name": "my_rails_cookbook",
+		"stencils": [
+			{
+				"name": "mywebsite.com",
+				"stencil_set": "rails"
+			},
+			{
+				"name": "_ruby",
+				"stencil_set": "ruby"
+			},
+			{
+				"name": "_nginx",
+				"stencil_set": "nginx",
+				"example": "rails"
+			},
+			{
+				"name": "_mariadb",
+				"stencil_set": "mariadb"
+			},
+			{
+				"name": "_haredis",
+				"stencil_set": "ha-redis",
+				"example": "php"
+			},
+			{
+				"name": "_rackspace_networks",
+				"stencil_set": "rackspace_networks"
+			}
+		]
+	}
+
+/***/ },
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -372,7 +416,7 @@
 	}
 
 /***/ },
-/* 6 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -387,10 +431,6 @@
 			"name": {
 				"help": "Name of the recipe to create",
 				"default": "_apache"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -408,7 +448,7 @@
 	}
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -453,7 +493,7 @@
 	}
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -475,8 +515,12 @@
 				"default": "http://github.com/erulabs/wordpress_test"
 			},
 			"webserver": {
-				"help": "Which webserver should we provide an example for? Choose 'nginx'/'apache'",
-				"default": "nginx"
+				"help": "Which webserver should we provide an example for?",
+				"default": "nginx",
+				"options": [
+					"nginx",
+					"apache"
+				]
 			}
 		},
 		"stencils": {
@@ -498,7 +542,7 @@
 	}
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -521,8 +565,12 @@
 				"default": "http://github.com/erulabs/wordpress_test"
 			},
 			"webserver": {
-				"help": "Which webserver should we provide an example for? Choose 'nginx'/'apache'",
-				"default": "nginx"
+				"help": "Which webserver should we provide an example for?",
+				"default": "nginx",
+				"options": [
+					"nginx",
+					"apache"
+				]
 			}
 		},
 		"stencils": {
@@ -544,7 +592,7 @@
 	}
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -571,7 +619,7 @@
 	}
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -594,10 +642,6 @@
 			"mount_path": {
 				"help": "The directory where we'll mount the first volume",
 				"default": "/var/sharedfs"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -611,7 +655,7 @@
 	}
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -638,7 +682,7 @@
 	}
 
 /***/ },
-/* 13 */
+/* 14 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -671,7 +715,7 @@
 	}
 
 /***/ },
-/* 14 */
+/* 15 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -685,10 +729,6 @@
 			"name": {
 				"help": "Name of the recipe to create",
 				"default": "_haproxy"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -704,7 +744,7 @@
 	}
 
 /***/ },
-/* 15 */
+/* 16 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -733,7 +773,7 @@
 	}
 
 /***/ },
-/* 16 */
+/* 17 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -750,10 +790,6 @@
 			"name": {
 				"help": "Name of the recipe to create",
 				"default": "_mariadb"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -772,7 +808,7 @@
 	}
 
 /***/ },
-/* 17 */
+/* 18 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -789,10 +825,6 @@
 			"name": {
 				"help": "Name of the recipe to create",
 				"default": "_galera"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -811,7 +843,7 @@
 	}
 
 /***/ },
-/* 18 */
+/* 19 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -840,7 +872,7 @@
 	}
 
 /***/ },
-/* 19 */
+/* 20 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -871,7 +903,7 @@
 	}
 
 /***/ },
-/* 20 */
+/* 21 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -905,7 +937,7 @@
 	}
 
 /***/ },
-/* 21 */
+/* 22 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -945,7 +977,7 @@
 	}
 
 /***/ },
-/* 22 */
+/* 23 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -961,10 +993,6 @@
 			"name": {
 				"help": "Name of the recipe to create",
 				"default": "_php"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -982,7 +1010,7 @@
 	}
 
 /***/ },
-/* 23 */
+/* 24 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1009,7 +1037,7 @@
 	}
 
 /***/ },
-/* 24 */
+/* 25 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1020,7 +1048,8 @@
 			"rackspace_iptables": {},
 			"chef-sugar": {},
 			"application": {},
-			"rbenv": {}
+			"rbenv": {},
+			"unicorn": {}
 		},
 		"options": {
 			"name": {
@@ -1046,7 +1075,7 @@
 	}
 
 /***/ },
-/* 25 */
+/* 26 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1077,7 +1106,7 @@
 	}
 
 /***/ },
-/* 26 */
+/* 27 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1105,7 +1134,7 @@
 	}
 
 /***/ },
-/* 27 */
+/* 28 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1131,7 +1160,7 @@
 	}
 
 /***/ },
-/* 28 */
+/* 29 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1184,7 +1213,7 @@
 	}
 
 /***/ },
-/* 29 */
+/* 30 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {
@@ -1204,10 +1233,6 @@
 			"example": {
 				"help": "Various premade Nginx examples",
 				"default": "basic"
-			},
-			"package_manager": {
-				"help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-				"default": "apt"
 			}
 		},
 		"stencils": {
@@ -1224,7 +1249,7 @@
 	}
 
 /***/ },
-/* 30 */
+/* 31 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {

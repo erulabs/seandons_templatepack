@@ -15,10 +15,6 @@
     "example": {
       "help": "Various premade Nginx examples",
       "default": "basic"
-    },
-    "package_manager": {
-      "help": "Which package manager to provide and example for - Choose 'apt'/'yum'",
-      "default": "apt"
     }
   },
   "stencils": {

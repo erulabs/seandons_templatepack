@@ -1,23 +1,25 @@
 # Install and configure Apache2
 
-{% if options['package_manager'] == "apt" %}
-# Use Apache 2.4.9, which includes the UDS patch for Unix Socket Support
-apt_repository 'apache2' do
-  uri 'ppa:ondrej/apache2'
-  distribution node['lsb']['codename']
-  key 'E5267A6C'
-  keyserver 'hkp://keyserver.ubuntu.com:80'
-  action :add
+# mostly used to simply run an "apt-get update" on boot, etc.
+case node['platform']
+when 'debian', 'ubuntu'
+  # Use Apache 2.4.9, which includes the UDS patch for Unix Socket Support
+  apt_repository 'apache2' do
+    uri 'ppa:ondrej/apache2'
+    distribution node['lsb']['codename']
+    key 'E5267A6C'
+    keyserver 'hkp://keyserver.ubuntu.com:80'
+    action :add
+  end
+  package 'apache2' do
+    action [:upgrade, :install]
+  end
+  package 'libapache2-mod-fastcgi' do
+    action [:upgrade, :install]
+  end
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  # Sorry, we don't support centos just yet. Stay tuned!
 end
-package 'apache2' do
-  action [:upgrade, :install]
-end
-package 'libapache2-mod-fastcgi' do
-  action [:upgrade, :install]
-end
-{% else %}
-# TODO: Sorry - we don't support adding the Apache2 repo for CentOS just yet.
-{% endif %}
 
 apache2_modules = %w(remoteip proxy_fcgi headers rewrite mpm_event expires)
 # Disable mod_php and the prefork MPM since we'll be using EVENT
