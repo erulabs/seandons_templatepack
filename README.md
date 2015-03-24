@@ -25,7 +25,7 @@ Please keep in mind these templates are meant to be fairly generic. There is no 
 
 ## Stencil Manifest API Guidelines
   For the most part, we use the default Fastfood manifest syntax. Because we append additional information to the manfiest API (for the sake of foodcourt, our stencil generation UI, but also sometimes because we're waiting on a PR for fastfood) and because Fastfood's manifest is hillariously undocumented, the following provides a simple reference. JSON doesn't support comments, so strip out the comments if copy-pasting:
-```json
+```javascript
 {
   // A string representing the name of the stencil - must match the name in the stencil pack's manifest.
   "id": "drupal",
