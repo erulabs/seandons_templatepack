@@ -37,12 +37,18 @@ Please keep in mind these templates are meant to be fairly generic. There is no 
   // provide only one... stencil. As you can imagine, a single stencil housing multiple others
   // Gets very confusing and opaque very quickly.
   "default_stencil": "drupal",
-  // Metadata.rb cookbook depenedancies. Adding things here is equivilent to "depends 'KEY'"
+  // Metadata.rb cookbook dependencies. Adding things here is equivilent to "depends 'KEY'"
   "dependencies": {
     "drush": {},
     "application": {},
     "users": {},
     "logrotate": {}
+  },
+  // Berks file dependencies
+  "berks_dependencies": {
+    "nodejs": {
+      "git": "https://github.com/erulabs/nodejs"
+    }
   },
   // Options which are passed to the Jinja Templating system
   "options": {
@@ -124,9 +130,6 @@ Please keep in mind these templates are meant to be fairly generic. There is no 
 ### HAProxy
   A short example HAProxy recipe with a handful of common examples.
 
-### IOJS
-  Installs and configures the Node.js fork, "IO.js". Replaces the "node" and "npm" binaries.
-
 ### Mariadb
   A Modern MySQL drop in replacement with automatic tuning. MariaDB 10.0 is fully supported by most modern applications which support MySQL (Wordpress, Drupal, etc). Automatic tuning means an effective system from a 1gb to a 32gb cloud server :)
 
@@ -142,7 +145,7 @@ Please keep in mind these templates are meant to be fairly generic. There is no 
   Installs and configured NGINX - Very basic recipe, no frills.
 
 ### NodeJS
-  Installs NodeJS and NPM from binary based on a defined version. Short and sweet!
+  Installs NodeJS and NPM from binary based on a defined version. Short and sweet! Also features support for io.js
 
 ### PHP
   Installs and configures a modern PHP - PHP5.6 with OPCache. The important thing to note here is that we're aiming for all installs to use PHP-FPM, PHP5.6, OpCache, and OpCache's "invalidate_timestamps" - this allows us to cache all compiled PHP scripts _forever_. A php-fpm reload is _required_ to reread changes off disk. In dev this is automatically disabled. See the OpCache tempalte for more information.
@@ -166,155 +169,4 @@ Please keep in mind these templates are meant to be fairly generic. There is no 
   A complete example wordpress featuring Redis caching support
 
 ## Example stencil manifests:
-### Wordpress
-```json
-{
-  "name": "my_wordpress_cookbook",
-  "stencils": [
-    {
-      "stencil_set": "wordpress",
-      "name": "mywebsite.com",
-      "repository": "http://github.com/erulabs/wordpress_test"
-    },
-    {
-      "name": "_php",
-      "stencil_set": "php"
-    },
-    {
-      "name": "_nginx",
-      "stencil_set": "nginx",
-      "example": "php"
-    },
-    {
-      "name": "_mariadb",
-      "stencil_set": "mariadb"
-    },
-    {
-      "name": "ha-redis",
-      "stencil_set": "ha-redis",
-      "example": "php"
-    }
-  ]
-}
-
-```
-
-### Drupal
-```json
-{
-  "name": "my_drupal_cookbook",
-  "stencils": [
-    {
-      "stencil_set": "drupal",
-      "name": "mywebsite.com",
-      "repository": "http://github.com/erulabs/drupal_test"
-    },
-    {
-      "name": "_php",
-      "stencil_set": "php"
-    },
-    {
-      "name": "_nginx",
-      "stencil_set": "nginx",
-      "example": "php"
-    },
-    {
-      "name": "_mariadb",
-      "stencil_set": "mariadb"
-    }
-  ]
-}
-```
-
-### Ruby on Rails
-
-  You'll most likely want to include a few other stencils here - such as MongoDB, MySQL, Memcached, Redis, NodeJS, or other common Rails tag-alongs.
-
-```json
-{
-  "name": "my_rails_cookbook",
-  "stencils": [
-    {
-      "name": "mywebsite.com",
-      "stencil_set": "rails"
-    },
-    {
-      "name": "_ruby",
-      "stencil_set": "ruby"
-    },
-    {
-      "name": "_nginx",
-      "stencil_set": "nginx",
-      "example": "rails"
-    },
-    {
-      "name": "_mariadb",
-      "stencil_set": "mariadb"
-    }
-  ]
-}
-```
-
-### LAMP
-
-  This is a slightly more complete LAMP stack featuring Varnisn, GlusterFS and Apache 2.4 with PHP-FPM.
-
-  While perhaps not common anymore, this showcases many stencils in action which are easy to use for your own purposes.
-
-```json
-{
-  "name": "my_lamp_cookbook",
-  "stencils": [
-    {
-      "name": "mywebsite.com",
-      "stencil_set": "application-php"
-    },
-    {
-      "name": "_php",
-      "stencil_set": "php"
-    },
-    {
-      "name": "_apache",
-      "stencil_set": "apache",
-      "example": "php-fpm"
-    },
-    {
-      "name": "_mariadb",
-      "stencil_set": "mariadb"
-    },
-    {
-      "name": "_varnish",
-      "stencil_set": "varnish"
-    },
-    {
-      "name": "_glusterfs",
-      "stencil_set": "glusterfs",
-      "mount_path": "/var/www/shared"
-    }
-  ]
-}
-```
-
-### NodeJS
-
-  Choose between Node.js and IO.js. The example application-node recipe makes use of PM2 for process management.
-
-```json
-{
-  "name": "my_node_cookbook",
-  "stencils": [
-    {
-      "name": "mywebsite.com",
-      "stencil_set": "application-node"
-    },
-    {
-      "name": "_nodejs",
-      "stencil_set": "nodejs"
-    },
-    {
-      "name": "_nginx",
-      "stencil_set": "nginx"
-    }
-  ]
-}
-```
+Please visit [FoodCourt](http://erulabs.github.io/seandons_templatepack/foodcourt/build/) for example stencils.

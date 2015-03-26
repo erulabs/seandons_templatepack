@@ -4,9 +4,12 @@ driver:
   public_key_path: ~/.ssh/id_rsa.pub
   rackspace_region: 'IAD'
   flavor_id: 'general1-2'
+  # Keep in mind, to use knife-rackspace you'll need to export
+  # RACKSPACE_USERNAME and RACKSPACE_API_KEY in your shell
 
 platforms:
   - name: ubuntu-14.04
+  - name: centos-6.5
 
 driver_config:
   require_chef_omnibus: true
@@ -57,7 +60,4 @@ provisioner:
           addresses:
             127.0.0.1:
               family: 'inet'
-
-platforms:
-  - name: ubuntu-14.04
 

@@ -6,11 +6,9 @@
       "stencil_set": "application-node"
     },
     {
-      "name": "_nodejs",
       "stencil_set": "nodejs"
     },
     {
-      "name": "_nginx",
       "stencil_set": "nginx"
     }
   ]

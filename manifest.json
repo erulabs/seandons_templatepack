@@ -26,9 +26,6 @@
     "nodejs": {
       "help": "Installs NodeJS and provides an NPM LWRP"
     },
-    "iojs": {
-      "help": "Installs IO.js and provides an NPM LWRP"
-    },
     "nginx": {
       "help": "Creates a standalone Nginx instance"
     },

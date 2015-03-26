@@ -5,29 +5,22 @@
   "dependencies": {
     "nodejs": {}
   },
+  "berks_dependencies": {
+    "nodejs": {
+      "git": "https://github.com/erulabs/nodejs"
+    }
+  },
   "options": {
     "name": {
       "help": "Name of the recipe to create",
       "default": "_nodejs"
-    },
-    "node_version": {
-      "help": "The version of NodeJS to install",
-      "default": "0.10.33"
-    },
-    "node_checksum": {
-      "help": "The MD5 sum of the NodeJS binary version",
-      "default": "1efad7c248b453ee6c62a706f6f86dbe"
-    },
-    "npm_version": {
-      "help": "The version of NPM to install",
-      "default": "2.1.3"
     }
   },
   "stencils": {
     "nodejs": {
       "files": {
         "recipes/<NAME>.rb": "recipes/_nodejs.rb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/nodejs_spec.rb"
+        "test/integration/default/<NAME>_spec.rb": "test/integration/default/nodejs_spec.rb"
       },
       "options": {
       }

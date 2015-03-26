@@ -7,25 +7,20 @@
       "repository": "http://github.com/erulabs/wordpress_test"
     },
     {
-      "name": "_php",
       "stencil_set": "php"
     },
     {
-      "name": "_nginx",
       "stencil_set": "nginx",
       "example": "php"
     },
     {
-      "name": "_mariadb",
       "stencil_set": "mariadb"
     },
     {
-      "name": "_haredis",
       "stencil_set": "ha-redis",
       "example": "php"
     },
     {
-      "name": "_rackspace_networks",
       "stencil_set": "rackspace_networks"
     }
   ]

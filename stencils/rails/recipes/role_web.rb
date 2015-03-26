@@ -19,6 +19,11 @@ include_recipe "#{cookbook_name}::_ruby"
 include_recipe "#{cookbook_name}::_nginx"
 # include_recipe "#{cookbook_name}::_apache"
 
+# Our test application (and _many_ Ruby applications require a JavaScript runtime)
+# We'll include NodeJS
+include_recipe "#{cookbook_name}::_nodejs"
+
+# Some other stencils which are very common in a Rails environment:
 # include_recipe "#{cookbook_name}::_rackspace_networks"
 # include_recipe "#{cookbook_name}::_glusterfs"
 # include_recipe "#{cookbook_name}::_haproxy"
