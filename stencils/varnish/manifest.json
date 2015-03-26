@@ -22,8 +22,7 @@
       "files": {
         "recipes/<NAME>.rb": "recipes/_varnish.rb.jinja2",
         "templates/default/varnish/default.vcl.erb": "templates/default/default.vcl.erb",
-        "templates/default/varnish/varnish.erb": "templates/default/varnish.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/varnish_spec.rb"
+        "templates/default/varnish/varnish.erb": "templates/default/varnish.erb"
       },
       "options": {
       }

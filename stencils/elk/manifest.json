@@ -14,8 +14,7 @@
     "elk": {
       "files": {
         "recipes/<NAME>.rb": "recipes/_elk.rb",
-        "templates/default/input_rails.conf.erb": "templates/default/input_rails.conf.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/elk_spec.rb"
+        "templates/default/input_rails.conf.erb": "templates/default/input_rails.conf.erb"
       },
       "options": {
       }

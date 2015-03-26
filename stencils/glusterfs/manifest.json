@@ -23,8 +23,7 @@
   "stencils": {
     "glusterfs": {
       "files": {
-        "recipes/<NAME>.rb": "recipes/_glusterfs.rb.jinja2",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/glusterfs_spec.rb"
+        "recipes/<NAME>.rb": "recipes/_glusterfs.rb.jinja2"
       }
     }
   }

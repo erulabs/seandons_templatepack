@@ -20,8 +20,7 @@
       "files": {
         "recipes/<NAME>.rb": "recipes/_haredis.rb.jinja2",
         "recipes/_haproxy.rb": "recipes/_haproxy.rb.jinja2",
-        "templates/default/haproxy.cfg.erb": "templates/default/haproxy.cfg.erb",
-        "test/unit/spec/haredis_spec.rb": "test/unit/spec/haredis_spec.rb"
+        "templates/default/haproxy.cfg.erb": "templates/default/haproxy.cfg.erb"
       }
     }
   }

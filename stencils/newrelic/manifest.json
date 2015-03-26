@@ -18,8 +18,7 @@
   "stencils": {
     "default": {
       "files": {
-        "recipes/<NAME>.rb": "recipes/default.rb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/default_spec.rb"
+        "recipes/<NAME>.rb": "recipes/default.rb"
       }
     }
   }

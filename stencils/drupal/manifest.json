@@ -33,8 +33,7 @@
         "recipes/kitchen_test.rb": "recipes/kitchen_test.rb",
         "templates/default/sites/<NAME>/nginx-site.erb": "templates/default/nginx-site.erb",
         "templates/default/sites/<NAME>/setup.sql.erb": "templates/default/setup.sql.erb",
-        "templates/default/sites/<NAME>/settings.php.erb": "templates/default/nginx-site.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/drupal_spec.rb"
+        "templates/default/sites/<NAME>/settings.php.erb": "templates/default/nginx-site.erb"
       },
       "options": {
       }

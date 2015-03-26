@@ -32,7 +32,7 @@
         "recipes/role_app.rb": "recipes/role_app.rb",
         "recipes/kitchen_test.rb": "recipes/kitchen_test.rb",
         "templates/default/apps/<NAME>/nginx-site.erb": "templates/default/nginx-site.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/nodeapp_spec.rb"
+        "test/integration/default/serverspec/<NAME>_spec.rb": "test/integration/default/serverspec/nodeapp_spec.rb"
       },
       "options": {
       }

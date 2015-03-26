@@ -35,8 +35,7 @@
         "templates/default/sites/<NAME>/nginx-site.erb": "templates/default/nginx-site.erb",
         "templates/default/sites/<NAME>/nginx-site.erb": "templates/default/apache-site.erb",
         "templates/default/sites/<NAME>/wp-config.php.erb": "templates/default/wp-config.php.erb",
-        "templates/default/sites/<NAME>/setup.sql.erb": "templates/default/setup.sql.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/wordpress_spec.rb"
+        "templates/default/sites/<NAME>/setup.sql.erb": "templates/default/setup.sql.erb"
       },
       "options": {
       }

@@ -20,7 +20,7 @@
     "nodejs": {
       "files": {
         "recipes/<NAME>.rb": "recipes/_nodejs.rb",
-        "test/integration/default/<NAME>_spec.rb": "test/integration/default/nodejs_spec.rb"
+        "test/integration/default/serverspec/<NAME>_spec.rb": "test/integration/default/serverspec/nodejs_spec.rb"
       },
       "options": {
       }

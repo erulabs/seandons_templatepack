@@ -14,8 +14,7 @@
     "graphite": {
       "files": {
         "recipes/<NAME>.rb": "recipes/_graphite.rb",
-        "templates/default/nginx/graphite.conf.erb": "templates/default/graphite.conf.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/graphite_spec.rb"
+        "templates/default/nginx/graphite.conf.erb": "templates/default/graphite.conf.erb"
       },
       "options": {
       }

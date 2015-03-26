@@ -20,8 +20,7 @@
     "nginx": {
       "files": {
         "recipes/<NAME>.rb": "recipes/_nginx.rb",
-        "templates/default/nginx/nginx.conf.erb": "templates/default/nginx.conf.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/nginx_spec.rb"
+        "templates/default/nginx/nginx.conf.erb": "templates/default/nginx.conf.erb"
       },
       "options": {
       }

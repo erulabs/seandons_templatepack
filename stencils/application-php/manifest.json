@@ -33,7 +33,7 @@
         "templates/default/sites/<NAME>/apache-site.erb": "templates/default/apache-site.erb",
         "templates/default/sites/<NAME>/nginx-site.erb": "templates/default/nginx-site.erb",
         "templates/default/sites/<NAME>/setup.sql.erb": "templates/default/setup.sql.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/lampapp_spec.rb"
+        "test/integration/default/serverspec/<NAME>_spec.rb": "test/integration/default/serverspec/lampapp_spec.rb"
       },
       "options": {
       }

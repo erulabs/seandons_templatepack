@@ -20,7 +20,6 @@
       },
       "files": {
         "recipes/<NAME>.rb": "recipes/_mariadb.rb.jinja2",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/mariadb_spec.rb",
         "templates/default/mariadb/.my.cnf.erb": "templates/default/.my.cnf.erb",
         "templates/default/mariadb/constants.sql.erb": "templates/default/constants.sql.erb",
         "templates/default/mariadb/my.cnf.erb": "templates/default/my.cnf.erb",

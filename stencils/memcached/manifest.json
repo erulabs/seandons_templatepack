@@ -16,8 +16,7 @@
     "default": {
       "files": {
         "recipes/<NAME>.rb": "recipes/default.rb",
-        "templates/default/memcached.conf.erb": "templates/default/memcached.conf.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/default_spec.rb"
+        "templates/default/memcached.conf.erb": "templates/default/memcached.conf.erb"
       }
     }
   }

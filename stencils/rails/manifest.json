@@ -25,8 +25,7 @@
         "recipes/app_<NAME>.rb": "recipes/_rails.rb.jinja2",
         "recipes/role_web.rb": "recipes/role_web.rb",
         "recipes/kitchen_test.rb": "recipes/kitchen_test.rb",
-        "templates/default/apps/<NAME>/nginx.conf.erb": "templates/default/nginx.conf.erb",
-        "test/unit/spec/<NAME>_spec.rb": "test/unit/spec/rails_spec.rb"
+        "templates/default/apps/<NAME>/nginx.conf.erb": "templates/default/nginx.conf.erb"
       }
     }
   }
