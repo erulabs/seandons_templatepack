@@ -21,7 +21,7 @@ Please keep in mind these templates are meant to be fairly generic. There is no 
 ## General guidelines:
   - Please use GitHub issues or [Waffle.io](https://waffle.io/erulabs/seandons_templatepack) for development tasks
   - Files which contain jinja markup should hold the extension .jinja2 for clarity. Files which do not contain any jinja2 markup do not need the extension.
-  - Extensive tests are welcome, but keep in mind complex tests may fail during a build, slowing down a racker. Consider stubbed out or commented out complex tests - allowing a cookbook builder to enable them later at ease when ready.
+  - Extensive tests are welcome.
 
 ## Stencil Manifest API Guidelines
   For the most part, we use the default Fastfood manifest syntax. Because we append additional information to the manfiest API (for the sake of foodcourt, our stencil generation UI, but also sometimes because we're waiting on a PR for fastfood) and because Fastfood's manifest is hillariously undocumented, the following provides a simple reference. JSON doesn't support comments, so strip out the comments if copy-pasting:

@@ -8,7 +8,7 @@
 # This cookbook ought to be included by your WebServer role
 
 # The webserver user - TODO: Smart detect
-webserver_user = 'www-data'
+webserver_user = node['drupal']['webserver']
 
 # The application's name - used extensively
 app_name = |{ qstring(options['name']) }|

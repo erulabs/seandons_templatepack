@@ -6,7 +6,7 @@
 #
 
 # The webserver user - TODO: Smart detect
-webserver_user = 'www-data'
+webserver_user = node['app-node']['webserver']
 
 # The application's name - used extensively
 app_name = |{ qstring(options['name']) }|

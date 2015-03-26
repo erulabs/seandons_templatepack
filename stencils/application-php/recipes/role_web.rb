@@ -17,6 +17,7 @@
 # You'll probably want PHP and a webserver
 include_recipe "#{cookbook_name}::_php"
 include_recipe "#{cookbook_name}::_nginx"
+node.default['app-php']['webserver'] = node['nginx']['user']
 # include_recipe "#{cookbook_name}::_apache"
 
 # include_recipe "#{cookbook_name}::_rackspace_networks"

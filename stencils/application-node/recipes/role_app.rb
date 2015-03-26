@@ -10,6 +10,7 @@ include_recipe "#{cookbook_name}::_nodejs"
 
 # And typically place a webserver in front of Node
 include_recipe "#{cookbook_name}::_nginx"
+node.default['app-node']['webserver'] = node['nginx']['user']
 
 nodejs_npm 'pm2' # We'll use PM2 for application managment :)
 nodejs_npm 'gulp' # A lot of apps make use of build systems like GULP as well.

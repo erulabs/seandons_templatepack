@@ -68,6 +68,7 @@ template '/etc/php5/fpm/pool.d/www.conf' do
   group 'root'
   mode '0644'
   notifies :restart, 'service[php5-fpm]'
+  variables(user: 'www-data')
 end
 
 # PHP.ini

@@ -1,5 +1,8 @@
 # Install and configure Apache2
 
+# Base webserver user on distro.
+node.default['apache']['user'] = 'www-data'
+
 # mostly used to simply run an "apt-get update" on boot, etc.
 case node['platform']
 when 'debian', 'ubuntu'
@@ -19,6 +22,7 @@ when 'debian', 'ubuntu'
   end
 when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
   # Sorry, we don't support centos just yet. Stay tuned!
+  node.default['apache']['user'] = 'apache2'
 end
 
 apache2_modules = %w(remoteip proxy_fcgi headers rewrite mpm_event expires)
@@ -79,7 +83,7 @@ end
 
 add_iptables_rule('INPUT', '-p tcp --dport 80 -j ACCEPT', 50, 'allow HTTP')
 
-user_ulimit 'www-data' do
+user_ulimit node['apache']['user'] do
   filehandle_limit 8192
 end
 

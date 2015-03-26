@@ -27,7 +27,16 @@ template '/etc/nginx/nginx.conf' do
   notifies :restart, 'service[nginx]'
 end
 
-user_ulimit 'www-data' do
+# Base webserver user on distro.
+node.default['nginx']['user'] = 'www-data'
+case node['platform']
+when 'debian', 'ubuntu'
+  node.default['nginx']['user'] = 'www-data'
+when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
+  node.default['nginx']['user'] = 'nginx'
+end
+
+user_ulimit node['nginx']['user'] do
   filehandle_limit 8192
 end
 

@@ -5,15 +5,14 @@
 # Copyright |{ cookbook['year'] }|, Rackspace
 #
 
-node.default['chef_client']['locale'] = 'en_US.UTF-8'
-include_recipe 'locale'
-ENV['LANG'] = node['locale']['lang']
-ENV['LC_ALL'] = node['locale']['lang']
-
 # Include the package manager helper recipes
-# mostly used to simply run an "apt-get update" on boot, etc.
 case node['platform']
 when 'debian', 'ubuntu'
+  # Fix locale on Ubuntu
+  node.default['chef_client']['locale'] = 'en_US.UTF-8'
+  include_recipe 'locale'
+  ENV['LANG'] = node['locale']['lang']
+  ENV['LC_ALL'] = node['locale']['lang']
   include_recipe 'apt'
 when 'redhat', 'centos', 'fedora', 'amazon', 'scientific'
   include_recipe 'yum'
